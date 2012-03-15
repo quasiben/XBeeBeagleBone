@@ -7,8 +7,8 @@ PORT = '/dev/ttyO1'
 BAUD_RATE = 9600
 
 uart1_pin_mux = [
-        ('uart1_rxd', ( 0 | (1<<5) )),
-        ('uart1_txd', ( 0 )),
+	('uart1_rxd', ( 0 | (1<<5) )),
+	('uart1_txd', ( 0 )),
 ]
 
 logging.basicConfig(level=logging.DEBUG)
@@ -25,4 +25,4 @@ count = 0
 while True:
 	a = ser.read()
 	print count, a
-    count += 1
+	count += 1
