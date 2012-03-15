@@ -13,7 +13,7 @@ uart1_pin_mux = [
 
 for (fname, mode) in uart1_pin_mux:
 	with open(os.path.join('/sys/kernel/debug/omap_mux', \
-	fname), 'wb') as f: #easy open/writing/closing of file with 'with'
+	fname), 'wb') as f: #easy open/writing/closing 'wb' write binary
 		f.write("%X" % mode)
 
 

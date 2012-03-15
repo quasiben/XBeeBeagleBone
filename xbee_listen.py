@@ -28,30 +28,35 @@ for (fname, mode) in uart1_pin_mux:
 def dump(data):
     print data
 
-def dump_back(data):
+def dump_back(data): #define callback function
 	if 'source_addr' in data:
-        addr = data['source_addr']
+		#get packet data
+		rf_data = "got the message (%s)" % data['rf_data']
+		print rf_data, " from ", str(data['source_addr_long'].encode("hex"))
+        
+		#collect packet info for return message
+		addr = data['source_addr']
         addr_long = data['source_addr_long']
-        rf_data = "got the message (%s)" % data['rf_data']
         fid = data['options']
-        print rf_data, " from ", str(data['source_addr_long'].encode("hex"))
-        xbee.send('tx', frame_id=fid, dest_addr=addr, dest_addr_long=addr_long, data=rf_data)
+		tx_data = rf_data #send same message back
+		xbee.send('tx', frame_id=fid, dest_addr=addr, dest_addr_long=addr_long, data=tx_data)
     else:
         print data
 
 
 serial_port = serial.Serial(PORT, BAUD_RATE)
-xbee = ZigBee(serial_port, callback=dump_back, escaped=True)
+xbee = ZigBee(serial_port, callback=dump_back, escaped=True) #asynchronous calling to process XBee Data
 
 
-xbee.send("at", frame_id='a', command='DH')
-xbee.send("at", frame_id='a', command='DL')
-xbee.send("at", frame_id='a', command='NI')
-xbee.send("at", frame_id='a', command='MY')
+#Send AT commands
+xbee.send("at", frame_id='a', command='DH') #Destination High
+xbee.send("at", frame_id='a', command='DL') #Destination Low
+xbee.send("at", frame_id='a', command='NI') #Node Identifier
+xbee.send("at", frame_id='a', command='MY') #Source 16-Bit Address
 print "------------------------------------------------------------------"
-xbee.send("at", frame_id='a', command='ND')
+xbee.send("at", frame_id='a', command='ND') #Node Discovery
 
-# done
+# loop forever
 while True:
     try: 
         time.sleep(0.01)
