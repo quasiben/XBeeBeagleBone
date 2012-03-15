@@ -1,14 +1,9 @@
 #! /usr/bin/python
 import os 
-import logging 
 
 import serial
 import time
 from xbee import ZigBee
-import xbee_at_cmds as at
-
-PORT = '/dev/ttyO1'
-BAUD_RATE = 9600
 
 PORT = '/dev/ttyO1' #set tty port NOTE: ON BEAGLE BONE O1 is the Letter O
 BAUD_RATE = 9600 #set baud rate
