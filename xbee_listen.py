@@ -41,7 +41,7 @@ def dump_back(data): #define callback function
         tx_data = rf_data #send same message back
         xbee.send('tx', frame_id=fid, dest_addr=addr, dest_addr_long=addr_long, data=tx_data)
     else:
-        print data
+        print data #print raw_data
 
 
 serial_port = serial.Serial(PORT, BAUD_RATE)
