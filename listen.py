@@ -4,7 +4,6 @@
 listen.py
 
 By Mike Furlotti and Benajmin Zaitlen
-pmalmsten@gmail.com
 
 This example reads the Serial Port (UART 1) on BeagleBone connected to an XBee.  The Raw RF Packet is the printed to
 the screen.
@@ -23,8 +22,8 @@ uart1_pin_mux = [
 
 for (fname, mode) in uart1_pin_mux:
 	with open(os.path.join('/sys/kernel/debug/omap_mux', \
-	fname), 'wb') as f: #easy open/writing/closing 'wb' write binary
-		f.write("%X" % mode)
+	          fname), 'wb') as f:
+	            f.write("%X" % mode)
 
 
 ser = serial.Serial(PORT, BAUD_RATE) #open serial port
