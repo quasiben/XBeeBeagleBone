@@ -3,7 +3,7 @@
 """
 xbee_listen.py
 
-By Mike Furlotti and Benajmin Zaitlen
+By Mike Furlotti, Damien Clark, Noah Zaitlen, and Benajmin Zaitlen
 
 This example reads the Serial Port (UART 1) on BeagleBone connected to an XBee.  The RF Packet is the processed
 using the Python-XBee API found at http://code.google.com/p/python-xbee/
